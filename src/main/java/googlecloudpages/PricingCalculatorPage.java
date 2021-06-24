@@ -122,9 +122,9 @@ public class PricingCalculatorPage extends BasePage {
     }
 
     public EstimationResultBar clickAddToEstimate() {
-        buttonAddToEstimate.get(1).click();
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(0));
+        javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(1));
         return new EstimationResultBar(driver);
     }
 

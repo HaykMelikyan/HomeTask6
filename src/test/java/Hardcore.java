@@ -1,5 +1,6 @@
 import googlecloudpages.*;
 import optionpickers.*;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,8 +10,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tenminuteemailpages.EmailGeneratePage;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Hardcore {
@@ -29,7 +28,7 @@ public class Hardcore {
     }
 
     @Test
-    public void googleCloudPricingCalculatorTest() throws AWTException, InterruptedException {
+    public void googleCloudPricingCalculatorTest() throws InterruptedException {
         SearchResultsPage searchResultsPage = new HomePage(driver)
                 .open()
                 .waitUntilPageLoads()
@@ -59,16 +58,10 @@ public class Hardcore {
                 .clickEmailEstimate()
                 .waitUntilFormAppear();
 
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_T);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_T);
-        Thread.sleep(1000);
+        ((JavascriptExecutor) driver).executeScript("window.open()");
 
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        Thread.sleep(500);
 
         EmailGeneratePage emailGeneratePage = new EmailGeneratePage(driver)
                 .open()
@@ -76,7 +69,6 @@ public class Hardcore {
                 .copyEmail();
 
         driver.switchTo().window(tabs.get(0));
-        Thread.sleep(500);
 
         pricingCalculatorPage.switchToInsideFrame();
         emailEstimateForm
@@ -84,7 +76,6 @@ public class Hardcore {
                 .sendEmail();
 
         driver.switchTo().window(tabs.get(1));
-        Thread.sleep(500);
 
         String actualMonthlyCost = emailGeneratePage
                 .openReceivedMail()
