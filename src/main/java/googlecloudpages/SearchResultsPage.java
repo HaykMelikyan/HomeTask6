@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SearchResultsPage extends BasePage {
 
     @FindBy(xpath = "//a[normalize-space() = 'Google Cloud Platform Pricing Calculator']")
-    private WebElement neededResult;
+    private WebElement firstResult;
 
     private final By allResultsLoc = By.cssSelector("div.gsc-webResult.gsc-result > div.gs-webResult.gs-result > div.gsc-thumbnail-inside a.gs-title");
 
@@ -28,8 +28,8 @@ public class SearchResultsPage extends BasePage {
         return this;
     }
 
-    public PricingCalculatorPage clickNeededResult() {
-        neededResult.click();
+    public PricingCalculatorPage clickFirstResult() {
+        firstResult.click();
         return new PricingCalculatorPage(driver);
     }
 }

@@ -39,7 +39,7 @@ public class EmailEstimateForm extends BasePage {
         return this;
     }
 
-    public void sendEmail() {
+    public void clickSendEmail() {
         buttonSendEmail.click();
     }
 }

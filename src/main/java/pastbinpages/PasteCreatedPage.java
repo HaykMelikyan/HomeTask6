@@ -10,9 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PasteCreatedPage extends BasePage {
 
-    @FindBy(css = "html[lang = 'en'] > head > title")
-    private WebElement pageTitle;
-
     @FindBy(css = "div.highlighted-code > div.top-buttons > div.left > a")
     private WebElement highlighting;
 
@@ -33,7 +30,7 @@ public class PasteCreatedPage extends BasePage {
     }
 
     public String getPageTitle() {
-        return pageTitle.getText();
+        return driver.getTitle();
     }
 
     public String getHighlighting() {

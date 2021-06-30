@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class HurtMePlenty {
+public class HurtMePlentyTest {
     WebDriver driver;
 
     @BeforeClass
@@ -34,21 +34,21 @@ public class HurtMePlenty {
 
         PricingCalculatorPage pricingCalculatorPage = searchResultsPage
                 .waitUntilPageLoads()
-                .clickNeededResult();
+                .clickFirstResult();
 
         EstimationResultBar estimationResultBar = pricingCalculatorPage
                 .waitUntilPageLoads()
                 .switchToInsideFrame()
-                .setNumberOfInstances(4)
+                .inputNumberOfInstances(4)
                 .setMachineType(MachineType.E2_STANDARD_8)
-                .setNumberOfNodes(1)
+                .inputNumberOfNodes(1)
                 .clickAddGpuCheckbox()
                 .setNumberOfGpus(NumberOfGpus._4)
                 .setGpuType(GpuType.NVIDIA_TESLA_V100)
                 .setLocalSsd(LocalSsd._24x375GB)
                 .setDatacenterLocation(DatacenterLocation.FRANKFURT)
                 .setCommitedUsage(CommitedUsage.ONE_YEAR)
-                .clickAddToEstimate()
+                .clickAddToEstimates()
                 .waitUntilResultsAppear();
 
         String actualVmClass = estimationResultBar.getVmClass();

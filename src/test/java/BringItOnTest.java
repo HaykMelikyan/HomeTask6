@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import pastbinpages.HomePage;
 import pastbinpages.PasteCreatedPage;
 
-public class BringItOn {
+public class BringItOnTest {
     WebDriver driver;
 
     @BeforeClass
@@ -29,7 +29,8 @@ public class BringItOn {
         String expectedCode = "git config --global user.name  \"New Sheriff in Town\"\n" +
                 "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
                 "git push origin master --force";
-        String expectedName = "how to gain dominance among developers";
+        String name = "how to gain dominance among developers";
+        String expectedName = "how to gain dominance among developers - Pastebin.com";
 
         HomePage homePage = new HomePage(driver);
         PasteCreatedPage pasteCreatedPage = homePage.open()
@@ -37,7 +38,7 @@ public class BringItOn {
                 .inputCode(expectedCode)
                 .setHighlighting(Highlighting.BASH)
                 .setExpiration(Expiration.TEN_MINUTES)
-                .inputName(expectedName)
+                .inputName(name)
                 .clickCreateNewPaste()
                 .waitUntilPageLoads();
 
@@ -45,7 +46,7 @@ public class BringItOn {
         String actualTitle = pasteCreatedPage.getPageTitle();
         String actualHighlighting = pasteCreatedPage.getHighlighting();
 
-        Assert.assertEquals(actualTitle, expectedName + " - Pastebin.com");
+        Assert.assertEquals(actualTitle, expectedName);
         Assert.assertEquals(actualHighlighting, Highlighting.BASH.getOptionText());
         Assert.assertEquals(actualCode, expectedCode);
     }

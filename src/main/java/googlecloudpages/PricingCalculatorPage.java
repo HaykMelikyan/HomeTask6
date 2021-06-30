@@ -60,12 +60,12 @@ public class PricingCalculatorPage extends BasePage {
         return this;
     }
 
-    public PricingCalculatorPage setNumberOfInstances(int numberOfInstances) {
+    public PricingCalculatorPage inputNumberOfInstances(int numberOfInstances) {
         numberOfInstancesInput.sendKeys(Integer.toString(numberOfInstances));
         return this;
     }
 
-    public PricingCalculatorPage setNumberOfNodes(int numberOfNodes) {
+    public PricingCalculatorPage inputNumberOfNodes(int numberOfNodes) {
         numberOfNodesInput.sendKeys(Integer.toString(numberOfNodes));
         return this;
     }
@@ -121,7 +121,7 @@ public class PricingCalculatorPage extends BasePage {
         return this;
     }
 
-    public EstimationResultBar clickAddToEstimate() {
+    public EstimationResultBar clickAddToEstimates() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(0));
         javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(1));
