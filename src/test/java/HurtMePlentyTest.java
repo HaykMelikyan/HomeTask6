@@ -4,7 +4,6 @@ import googlecloudpages.PricingCalculatorPage;
 import googlecloudpages.SearchResultsPage;
 import optionpickers.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,8 +14,7 @@ public class HurtMePlentyTest {
 
     @BeforeClass
     public void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = WebDriverHelper.getEdgeDriver();
         driver.manage().window().maximize();
     }
 

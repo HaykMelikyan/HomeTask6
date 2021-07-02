@@ -17,8 +17,7 @@ public class HardcoreTest {
 
     @BeforeClass
     public void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = WebDriverHelper.getFirefoxDriver();
         driver.manage().window().maximize();
     }
 

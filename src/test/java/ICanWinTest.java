@@ -1,6 +1,5 @@
 import optionpickers.Expiration;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,8 +10,7 @@ public class ICanWinTest {
 
     @BeforeClass
     public void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = WebDriverHelper.getChromeDriver();
         driver.manage().window().maximize();
     }
 

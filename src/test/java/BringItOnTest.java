@@ -1,7 +1,6 @@
 import optionpickers.Expiration;
 import optionpickers.Highlighting;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,8 +13,7 @@ public class BringItOnTest {
 
     @BeforeClass
     public void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = WebDriverHelper.getChromeDriver();
         driver.manage().window().maximize();
     }
 
