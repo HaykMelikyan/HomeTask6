@@ -8,12 +8,14 @@ import org.testng.annotations.Test;
 import pastbinpages.HomePage;
 import pastbinpages.PasteCreatedPage;
 
+import java.net.MalformedURLException;
+
 public class BringItOnTest {
     WebDriver driver;
 
     @BeforeClass
-    public void setupDriver() {
-        driver = WebDriverHelper.getChromeDriver();
+    public void setupDriver() throws MalformedURLException {
+        driver = WebDriverHelper.getFirefoxDriver();
         driver.manage().window().maximize();
     }
 

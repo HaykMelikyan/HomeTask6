@@ -9,12 +9,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class HurtMePlentyTest {
     WebDriver driver;
 
     @BeforeClass
-    public void setupDriver() {
-        driver = WebDriverHelper.getEdgeDriver();
+    public void setupDriver() throws MalformedURLException {
+        driver = WebDriverHelper.getChromeDriver();
         driver.manage().window().maximize();
     }
 

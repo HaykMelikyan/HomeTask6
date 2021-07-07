@@ -10,14 +10,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tenminuteemailpages.EmailGeneratePage;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class HardcoreTest {
     WebDriver driver;
 
     @BeforeClass
-    public void setupDriver() {
-        driver = WebDriverHelper.getFirefoxDriver();
+    public void setupDriver() throws MalformedURLException {
+        driver = WebDriverHelper.getChromeDriver();
         driver.manage().window().maximize();
     }
 

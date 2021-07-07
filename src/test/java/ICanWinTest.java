@@ -5,12 +5,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pastbinpages.HomePage;
 
+import java.net.MalformedURLException;
+
 public class ICanWinTest {
     WebDriver driver;
 
     @BeforeClass
-    public void setupDriver() {
-        driver = WebDriverHelper.getChromeDriver();
+    public void setupDriver() throws MalformedURLException {
+        driver = WebDriverHelper.getFirefoxDriver();
         driver.manage().window().maximize();
     }
 

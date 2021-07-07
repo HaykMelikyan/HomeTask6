@@ -1,22 +1,17 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WebDriverHelper {
-    public static WebDriver getChromeDriver() {
-        WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+    public static WebDriver getChromeDriver() throws MalformedURLException {
+        return new RemoteWebDriver(new URL("http://10.22.221.72:4444/wd/hub"), new ChromeOptions());
     }
 
-    public static WebDriver getFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
-    }
-
-    public static WebDriver getEdgeDriver() {
-        WebDriverManager.edgedriver().setup();
-        return new EdgeDriver();
+    public static WebDriver getFirefoxDriver() throws MalformedURLException {
+        return new RemoteWebDriver(new URL("http://10.22.221.72:4444/wd/hub"), new FirefoxOptions());
     }
 }
