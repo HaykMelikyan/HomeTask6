@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console-Log">
+            <PatternLayout>
+                <pattern>
+                    %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </Console>
+        <File name="File-Log" fileName="target/logs/googleCloudPricingCalculatorTest.log">
+            <PatternLayout>
+                <pattern>
+                    %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+<!--        <rollingfile name="RollingFile-Appender" filename="target/logs/rollingfile.log"-->
+<!--                     filepattern="target/logs/rollingfile.log.%d{yyyy-MM-dd-hh-mm}.gz">-->
+<!--            <patternlayout>-->
+<!--                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>-->
+<!--            </patternlayout>-->
+<!--        </rollingfile>-->
+    </Appenders>
+
+    <Loggers>
+        <Root level="Trace">
+            <AppenderRef ref="Console-Log"/>
+            <AppenderRef ref="File-Log"/>
+        </Root>
+    </Loggers>
+</Configuration>

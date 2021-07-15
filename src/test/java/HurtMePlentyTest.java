@@ -3,28 +3,10 @@ import googlecloudpages.HomePage;
 import googlecloudpages.PricingCalculatorPage;
 import googlecloudpages.SearchResultsPage;
 import optionpickers.*;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-
-public class HurtMePlentyTest {
-    WebDriver driver;
-
-    @BeforeClass
-    public void setupDriver() throws MalformedURLException {
-        driver = WebDriverHelper.getChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    public void closeBrowser() {
-        driver.quit();
-    }
-
+public class HurtMePlentyTest extends BaseTest {
     @Test
     public void googleCloudPricingCalculatorTest() {
         SearchResultsPage searchResultsPage = new HomePage(driver)

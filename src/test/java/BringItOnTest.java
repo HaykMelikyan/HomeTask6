@@ -1,29 +1,11 @@
 import optionpickers.Expiration;
 import optionpickers.Highlighting;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pastbinpages.HomePage;
 import pastbinpages.PasteCreatedPage;
 
-import java.net.MalformedURLException;
-
-public class BringItOnTest {
-    WebDriver driver;
-
-    @BeforeClass
-    public void setupDriver() throws MalformedURLException {
-        driver = WebDriverHelper.getFirefoxDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    public void closeBrowser() {
-        driver.quit();
-    }
-
+public class BringItOnTest extends BaseTest {
     @Test
     public void createNewPasteTest() {
         String expectedCode = "git config --global user.name  \"New Sheriff in Town\"\n" +

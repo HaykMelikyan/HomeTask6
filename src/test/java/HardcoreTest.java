@@ -1,49 +1,45 @@
 import googlecloudpages.*;
 import optionpickers.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tenminuteemailpages.EmailGeneratePage;
+import utils.PropertyReader;
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class HardcoreTest {
-    WebDriver driver;
-
-    @BeforeClass
-    public void setupDriver() throws MalformedURLException {
-        driver = WebDriverHelper.getChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    public void closeBrowser() {
-        driver.quit();
-    }
-
+public class HardcoreTest extends BaseTest {
     @Test
-    public void googleCloudPricingCalculatorTest() throws InterruptedException {
+    public void googleCloudPricingCalculatorTest() throws InterruptedException, IOException {
+        PropertyReader prop = new PropertyReader();
+        Logger logger = LogManager.getRootLogger();
+//        System.setProperty("current-date", (new Date()).toString());
+
         SearchResultsPage searchResultsPage = new HomePage(driver)
                 .open()
                 .waitUntilPageLoads()
-                .searchText("Google Cloud Platform Pricing Calculator");
+                .searchText(prop.getProperty("googlecloud.search"));
+        logger.trace("Performed search for pricing calculator");
 
         PricingCalculatorPage pricingCalculatorPage = searchResultsPage
                 .waitUntilPageLoads()
                 .clickFirstResult();
+        logger.trace("Opened pricing calculator page");
 
         EstimationResultBar estimationResultBar = pricingCalculatorPage
                 .waitUntilPageLoads()
                 .switchToInsideFrame()
-                .inputNumberOfInstances(4)
+                .inputNumberOfInstances(
+                        Integer.parseInt(
+                                prop.getProperty("form.instances")))
                 .setMachineType(MachineType.E2_STANDARD_8)
-                .inputNumberOfNodes(1)
+                .inputNumberOfNodes(
+                        Integer.parseInt(
+                                prop.getProperty("form.nodes")))
                 .clickAddGpuCheckbox()
                 .setNumberOfGpus(NumberOfGpus._4)
                 .setGpuType(GpuType.NVIDIA_TESLA_V100)
@@ -52,35 +48,46 @@ public class HardcoreTest {
                 .setCommitedUsage(CommitedUsage.ONE_YEAR)
                 .clickAddToEstimates()
                 .waitUntilResultsAppear();
+        logger.trace("Filled the form");
 
         String expectedMonthlyCost = estimationResultBar.getTotalPrice();
+        logger.trace("Stored the total price");
         EmailEstimateForm emailEstimateForm = estimationResultBar
                 .clickEmailEstimate()
                 .waitUntilFormAppear();
+        logger.trace("Opened email estimate form");
 
         ((JavascriptExecutor) driver).executeScript("window.open()");
+        logger.trace("Opened new tab in browser");
 
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        logger.trace("Switched to the new tab");
 
         EmailGeneratePage emailGeneratePage = new EmailGeneratePage(driver)
                 .open()
                 .waintUntilPageLoads()
                 .copyEmail();
+        logger.trace("Opened the website and copied the generated email");
 
         driver.switchTo().window(tabs.get(0));
+        logger.trace("Switched back to the calculator tab");
 
         pricingCalculatorPage.switchToInsideFrame();
         emailEstimateForm
                 .setEmail(Keys.CONTROL + "v")
                 .clickSendEmail();
+        logger.trace("Pasted the email in the field and clicked send");
 
         driver.switchTo().window(tabs.get(1));
+        logger.trace("Switched to email tab");
 
         String actualMonthlyCost = emailGeneratePage
                 .openReceivedMail()
                 .getMonthlyCost();
+        logger.trace("Stored the price from the received mail");
 
         Assert.assertEquals(actualMonthlyCost, expectedMonthlyCost);
+        logger.trace("Performed assertion");
     }
 }

@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="all tests">
+    <test name="all">
+        <classes>
+            <class name="HurtMePlentyTest"/>
+            <class name="HardcoreTest"/>
+            <class name="BringItOnTest"/>
+            <class name="ICanWinTest"/>
+        </classes>
+    </test>
+</suite>
