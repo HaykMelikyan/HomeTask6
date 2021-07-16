@@ -8,21 +8,17 @@
                 </pattern>
             </PatternLayout>
         </Console>
-        <File name="File-Log" fileName="target/logs/googleCloudPricingCalculatorTest.log">
+        <RollingFile name="File-Log"
+                     filePattern="target/logs/google-cloud-pricing-calculator-%d{yyyy-MM-dd}.log">
             <PatternLayout>
-                <pattern>
-                    %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
-                </pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
             </PatternLayout>
-        </File>
-<!--        <rollingfile name="RollingFile-Appender" filename="target/logs/rollingfile.log"-->
-<!--                     filepattern="target/logs/rollingfile.log.%d{yyyy-MM-dd-hh-mm}.gz">-->
-<!--            <patternlayout>-->
-<!--                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>-->
-<!--            </patternlayout>-->
-<!--        </rollingfile>-->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
     </Appenders>
-
     <Loggers>
         <Root level="Trace">
             <AppenderRef ref="Console-Log"/>

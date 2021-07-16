@@ -17,8 +17,8 @@ public class HardcoreTest extends BaseTest {
     public void googleCloudPricingCalculatorTest() throws InterruptedException, IOException {
         PropertyReader prop = new PropertyReader();
         Logger logger = LogManager.getRootLogger();
-//        System.setProperty("current-date", (new Date()).toString());
 
+        logger.trace("Test started");
         SearchResultsPage searchResultsPage = new HomePage(driver)
                 .open()
                 .waitUntilPageLoads()
@@ -87,7 +87,8 @@ public class HardcoreTest extends BaseTest {
                 .getMonthlyCost();
         logger.trace("Stored the price from the received mail");
 
+        logger.trace("Performing assertion");
         Assert.assertEquals(actualMonthlyCost, expectedMonthlyCost);
-        logger.trace("Performed assertion");
+        logger.trace("Test passed");
     }
 }

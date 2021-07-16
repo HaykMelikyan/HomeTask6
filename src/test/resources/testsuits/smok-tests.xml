@@ -2,7 +2,6 @@
 <suite name="smoke tests">
     <test name="smoke">
         <classes>
-            <class name="HurtMePlentyTest"/>
             <class name="HardcoreTest"/>
         </classes>
     </test>

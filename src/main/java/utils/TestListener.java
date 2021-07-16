@@ -10,12 +10,19 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TestListener implements ITestListener {
+    Logger logger = LogManager.getRootLogger();
+
     @Override
     public void onTestFailure(ITestResult result) {
-        Logger logger = LogManager.getRootLogger();
         logger.warn("Test failed");
+        saveScreenshot(result.getName());
+    }
+
+    private void saveScreenshot(String testName) {
         try {
             File screenshot = ((TakesScreenshot) WebDriverHelper
                     .getCurrentDriver())
@@ -23,8 +30,8 @@ public class TestListener implements ITestListener {
 
             FileUtils.copyFile(screenshot, new File(
                     ".//target/screenshots/"
-                            + result.getName()
-                            + System.currentTimeMillis()
+                            + testName
+                            + getCurrentTimeAsString()
                             + ".png"));
             logger.info("Screenshot has been taken");
         } catch (IOException e) {
@@ -32,7 +39,8 @@ public class TestListener implements ITestListener {
         }
     }
 
-    private void getCurrentDateTime() {
-
+    private String getCurrentTimeAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
+        return ZonedDateTime.now().format(formatter);
     }
 }
