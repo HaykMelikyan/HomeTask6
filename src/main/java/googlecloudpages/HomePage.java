@@ -1,5 +1,6 @@
 package googlecloudpages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
-    private final String pageUrl = BASE_URL;
+    private String pageUrl = BASE_URL;
 
     @FindBy(name = "q")
     private WebElement searchField;
@@ -28,7 +29,8 @@ public class HomePage extends BasePage {
     @Override
     public HomePage waitUntilPageLoads() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(searchField));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
+        wait.until(ExpectedConditions.elementToBeClickable(searchField));
         return this;
     }
 
@@ -37,6 +39,9 @@ public class HomePage extends BasePage {
         actions.click(searchField)
                 .build()
                 .perform();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions
+                        .visibilityOfElementLocated(By.cssSelector("devsite-search[search-active]")));
         actions.sendKeys(searchField, searchText + Keys.ENTER)
                 .build()
                 .perform();

@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class PricingCalculatorPage extends BasePage {
-    private final String pageUrl = BASE_URL + "products/calculator";
+    private static final String DROPDOWN_OPTION_BASE_XPATH = "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '";
 
     @FindBy(xpath = "//md-input-container[@class = 'flex']/input[@name = 'quantity']")
     private WebElement numberOfInstancesInput;
@@ -84,7 +84,7 @@ public class PricingCalculatorPage extends BasePage {
     public PricingCalculatorPage setNumberOfGpus(NumberOfGpus numberOfGpus) {
         setDropdownOption(
                 numberOfGpusDropdown,
-                "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '" + numberOfGpus.getOptionText() + "']"
+                DROPDOWN_OPTION_BASE_XPATH + numberOfGpus.getOptionText() + "']"
         );
         return this;
     }
@@ -92,7 +92,7 @@ public class PricingCalculatorPage extends BasePage {
     public PricingCalculatorPage setGpuType(GpuType gpuType) {
         setDropdownOption(
                 gpuTypeDropdown,
-                "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '" + gpuType.getOptionText() + "']"
+                DROPDOWN_OPTION_BASE_XPATH + gpuType.getOptionText() + "']"
         );
         return this;
     }
@@ -100,7 +100,7 @@ public class PricingCalculatorPage extends BasePage {
     public PricingCalculatorPage setLocalSsd(LocalSsd localSsd) {
         setDropdownOption(
                 localSsdDropdown,
-                "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '" + localSsd.getOptionText() + "']"
+                DROPDOWN_OPTION_BASE_XPATH + localSsd.getOptionText() + "']"
         );
         return this;
     }
@@ -108,7 +108,7 @@ public class PricingCalculatorPage extends BasePage {
     public PricingCalculatorPage setDatacenterLocation(DatacenterLocation datacenterLocation) {
         setDropdownOption(
                 datacenterLocationDropdown,
-                "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '" + datacenterLocation.getOptionText() + "']"
+                DROPDOWN_OPTION_BASE_XPATH + datacenterLocation.getOptionText() + "']"
         );
         return this;
     }
@@ -116,7 +116,7 @@ public class PricingCalculatorPage extends BasePage {
     public PricingCalculatorPage setCommitedUsage(CommitedUsage commitedUsage) {
         setDropdownOption(
                 commitedUsageDropdown,
-                "//div[@class = 'md-select-menu-container md-active md-clickable']//md-option[@value = '" + commitedUsage.getOptionText() + "']"
+                DROPDOWN_OPTION_BASE_XPATH + commitedUsage.getOptionText() + "']"
         );
         return this;
     }

@@ -9,17 +9,16 @@ import org.testng.annotations.Test;
 import tenminuteemailpages.EmailGeneratePage;
 import utils.PropertyReader;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HardcoreTest extends BaseTest {
     @Test
-    public void googleCloudPricingCalculatorTest() throws InterruptedException, IOException {
+    public void googleCloudPricingCalculatorTest() {
         PropertyReader prop = new PropertyReader();
         Logger logger = LogManager.getRootLogger();
 
         logger.trace("Test started");
-        SearchResultsPage searchResultsPage = new HomePage(driver)
+        SearchResultsPage searchResultsPage = new HomePage(getDriver())
                 .open()
                 .waitUntilPageLoads()
                 .searchText(prop.getProperty("googlecloud.search"));
@@ -41,7 +40,7 @@ public class HardcoreTest extends BaseTest {
                         Integer.parseInt(
                                 prop.getProperty("form.nodes")))
                 .clickAddGpuCheckbox()
-                .setNumberOfGpus(NumberOfGpus._4)
+                .setNumberOfGpus(NumberOfGpus.FOUR)
                 .setGpuType(GpuType.NVIDIA_TESLA_V100)
                 .setLocalSsd(LocalSsd._24x375GB)
                 .setDatacenterLocation(DatacenterLocation.FRANKFURT)
@@ -57,20 +56,20 @@ public class HardcoreTest extends BaseTest {
                 .waitUntilFormAppear();
         logger.trace("Opened email estimate form");
 
-        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ((JavascriptExecutor) getDriver()).executeScript("window.open()");
         logger.trace("Opened new tab in browser");
 
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+        ArrayList<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1));
         logger.trace("Switched to the new tab");
 
-        EmailGeneratePage emailGeneratePage = new EmailGeneratePage(driver)
+        EmailGeneratePage emailGeneratePage = new EmailGeneratePage(getDriver())
                 .open()
                 .waintUntilPageLoads()
                 .copyEmail();
         logger.trace("Opened the website and copied the generated email");
 
-        driver.switchTo().window(tabs.get(0));
+        getDriver().switchTo().window(tabs.get(0));
         logger.trace("Switched back to the calculator tab");
 
         pricingCalculatorPage.switchToInsideFrame();
@@ -79,7 +78,7 @@ public class HardcoreTest extends BaseTest {
                 .clickSendEmail();
         logger.trace("Pasted the email in the field and clicked send");
 
-        driver.switchTo().window(tabs.get(1));
+        getDriver().switchTo().window(tabs.get(1));
         logger.trace("Switched to email tab");
 
         String actualMonthlyCost = emailGeneratePage

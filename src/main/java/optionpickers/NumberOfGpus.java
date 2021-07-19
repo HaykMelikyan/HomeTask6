@@ -1,10 +1,10 @@
 package optionpickers;
 
 public enum NumberOfGpus {
-    _0("0"),
-    _1("1"),
-    _2("2"),
-    _4("4");
+    ZERO("0"),
+    ONE("1"),
+    TWO("2"),
+    FOUR("4");
 
     private final String optionText;
 

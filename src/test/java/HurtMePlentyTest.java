@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class HurtMePlentyTest extends BaseTest {
     @Test
     public void googleCloudPricingCalculatorTest() {
-        SearchResultsPage searchResultsPage = new HomePage(driver)
+        SearchResultsPage searchResultsPage = new HomePage(getDriver())
                 .open()
                 .waitUntilPageLoads()
                 .searchText("Google Cloud Platform Pricing Calculator");
@@ -25,7 +25,7 @@ public class HurtMePlentyTest extends BaseTest {
                 .setMachineType(MachineType.E2_STANDARD_8)
                 .inputNumberOfNodes(1)
                 .clickAddGpuCheckbox()
-                .setNumberOfGpus(NumberOfGpus._4)
+                .setNumberOfGpus(NumberOfGpus.FOUR)
                 .setGpuType(GpuType.NVIDIA_TESLA_V100)
                 .setLocalSsd(LocalSsd._24x375GB)
                 .setDatacenterLocation(DatacenterLocation.FRANKFURT)

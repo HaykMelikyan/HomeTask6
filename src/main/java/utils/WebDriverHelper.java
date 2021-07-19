@@ -1,6 +1,7 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,24 +13,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class WebDriverHelper {
-    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getNewDriver() throws MalformedURLException {
-        if (System.getProperty("browser", "chrome").equals("firefox")) {
-            driver = createFirefoxDriver();
-        } else {
-            driver = createChromeDriver();
-        }
-        return driver;
+    public static WebDriver getDriver() throws MalformedURLException {
+        return driver.get() == null ? getNewDriver() : driver.get();
     }
 
-    public static WebDriver getCurrentDriver() throws MalformedURLException {
-        return driver == null ? getNewDriver() : driver;
+    private static WebDriver getNewDriver() throws MalformedURLException {
+        if (new PropertyReader().getProperty("browser").equals("firefox")) {
+            driver.set(createFirefoxDriver());
+        } else {
+            driver.set(createChromeDriver());
+        }
+        return driver.get();
     }
 
     private static WebDriver createChromeDriver() throws MalformedURLException {
-        if (System.getProperty("remoteExecution", "no").equals("yes")) {
-            return new RemoteWebDriver(new URL("http://10.22.221.72:4444/wd/hub"), new ChromeOptions());
+        if (isRemote()) {
+            return createRemoteDriver(new ChromeOptions());
         } else {
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
@@ -37,11 +38,19 @@ public class WebDriverHelper {
     }
 
     private static WebDriver createFirefoxDriver() throws MalformedURLException {
-        if (System.getProperty("remoteExecution", "no").equals("yes")) {
-            return new RemoteWebDriver(new URL("http://10.22.221.72:4444/wd/hub"), new FirefoxOptions());
+        if (isRemote()) {
+            return createRemoteDriver(new FirefoxOptions());
         } else {
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
         }
+    }
+
+    private static boolean isRemote() {
+        return new PropertyReader().getProperty("remote").equals("true");
+    }
+
+    private static WebDriver createRemoteDriver(Capabilities browserOptions) throws MalformedURLException {
+        return new RemoteWebDriver(new URL(new PropertyReader().getProperty("selenium.grid.hub")), browserOptions);
     }
 }

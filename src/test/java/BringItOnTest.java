@@ -14,7 +14,7 @@ public class BringItOnTest extends BaseTest {
         String name = "how to gain dominance among developers";
         String expectedName = "how to gain dominance among developers - Pastebin.com";
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         PasteCreatedPage pasteCreatedPage = homePage.open()
                 .waitUntilPageLoads()
                 .inputCode(expectedCode)

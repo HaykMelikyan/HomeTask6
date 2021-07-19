@@ -33,7 +33,7 @@ public class EmailGeneratePage {
         return this;
     }
 
-    public EmailGeneratePage waintUntilPageLoads() throws InterruptedException {
+    public EmailGeneratePage waintUntilPageLoads() {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.attributeToBeNotEmpty(mailAddress, "value"));
         return this;

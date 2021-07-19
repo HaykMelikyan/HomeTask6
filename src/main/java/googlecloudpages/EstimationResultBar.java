@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class EstimationResultBar extends BasePage {
-    private final String BASE_XPATH = "//div[@ng-controller = 'CloudCartCtrl as cloudCartCtrl']/div//div[contains(normalize-space(), ";
+    private static final String BASE_XPATH = "//div[@ng-controller = 'CloudCartCtrl as cloudCartCtrl']/div//div[contains(normalize-space(), ";
 
     @FindBy(xpath = BASE_XPATH + "'VM class:')]")
     private WebElement vmClass;

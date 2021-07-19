@@ -25,7 +25,7 @@ public class TestListener implements ITestListener {
     private void saveScreenshot(String testName) {
         try {
             File screenshot = ((TakesScreenshot) WebDriverHelper
-                    .getCurrentDriver())
+                    .getDriver())
                     .getScreenshotAs(OutputType.FILE);
 
             FileUtils.copyFile(screenshot, new File(

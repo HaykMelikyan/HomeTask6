@@ -1,7 +1,5 @@
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import utils.TestListener;
 import utils.WebDriverHelper;
 
@@ -9,16 +7,21 @@ import java.net.MalformedURLException;
 
 @Listeners(TestListener.class)
 public abstract class BaseTest {
-    protected WebDriver driver;
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @BeforeClass
+    @BeforeMethod
     public void setupDriver() throws MalformedURLException {
-        driver = WebDriverHelper.getNewDriver();
-        driver.manage().window().maximize();
+        driver.set(WebDriverHelper.getDriver());
+        driver.get().manage().window().maximize();
     }
 
-    @AfterClass
+    @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
-        driver.quit();
+        driver.get().quit();
+        driver.set(null);
+    }
+
+    protected WebDriver getDriver() {
+        return driver.get();
     }
 }

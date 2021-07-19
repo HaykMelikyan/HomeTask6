@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EmailEstimateForm extends BasePage {
-    private final String BASE_CSS = "form[name = 'emailForm'] ";
+    private static final String BASE_CSS = "form[name = 'emailForm'] ";
 
     @FindBy(css = BASE_CSS + "input[type = 'email']")
     private WebElement emailInput;
