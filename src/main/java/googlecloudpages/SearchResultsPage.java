@@ -13,7 +13,7 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "//a[normalize-space() = 'Google Cloud Platform Pricing Calculator']")
     private WebElement firstResult;
 
-    private final By allResultsLoc = By.cssSelector("a.gs-title");
+    private final By allResultsLoc = By.xpath("//div[contains(@class, gsc-result)]/a[@class='gs-title']");
 
     public SearchResultsPage(WebDriver driver) {
         this.driver = driver;
