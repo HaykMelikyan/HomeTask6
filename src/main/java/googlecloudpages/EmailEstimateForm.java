@@ -1,11 +1,11 @@
 package googlecloudpages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 public class EmailEstimateForm extends BasePage {
     private static final String BASE_CSS = "form[name = 'emailForm'] ";
@@ -16,8 +16,8 @@ public class EmailEstimateForm extends BasePage {
     @FindBy(css = "button[aria-label = 'Send Email']")
     private WebElement buttonSendEmail;
 
-    public EmailEstimateForm(WebDriver driver) {
-        this.driver = driver;
+    public EmailEstimateForm() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 

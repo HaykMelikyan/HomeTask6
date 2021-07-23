@@ -6,10 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 public class EmailGeneratePage {
     WebDriver driver;
-    private final String pageUrl = "https://10minutemail.com";
+    private String pageUrl = "https://10minutemail.com";
 
     @FindBy(id = "mail_address")
     private WebElement mailAddress;
@@ -23,8 +24,8 @@ public class EmailGeneratePage {
     @FindBy(css = "tr[id = 'mobilepadding'] h2")
     private WebElement monthlyCost;
 
-    public EmailGeneratePage(WebDriver driver) {
-        this.driver = driver;
+    public EmailGeneratePage() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 

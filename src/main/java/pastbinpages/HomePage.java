@@ -3,15 +3,15 @@ package pastbinpages;
 import optionpickers.Expiration;
 import optionpickers.Highlighting;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 public class HomePage extends BasePage {
-    private final String pageUrl = BASE_URL;
+    private String pageUrl = BASE_URL;
 
     @FindBy(id = "postform-text")
     private WebElement codeInput;
@@ -28,8 +28,8 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[text() = 'Create New Paste']")
     private WebElement createButton;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    public HomePage() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -79,6 +79,6 @@ public class HomePage extends BasePage {
 
     public PasteCreatedPage clickCreateNewPaste() {
         createButton.click();
-        return new PasteCreatedPage(driver);
+        return new PasteCreatedPage();
     }
 }

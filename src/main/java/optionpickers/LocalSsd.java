@@ -1,8 +1,8 @@
 package optionpickers;
 
 public enum LocalSsd {
-    _0("0"),
-    _24x375GB("24");
+    STORAGE_0("0"),
+    STORAGE_24X375GB("24");
 
     private final String optionText;
 

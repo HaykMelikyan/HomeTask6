@@ -5,7 +5,7 @@ import pastbinpages.HomePage;
 public class ICanWinTest extends BaseTest {
     @Test
     public void createNewPaste() {
-        new HomePage(getDriver()).open()
+        new HomePage().open()
                 .waitUntilPageLoads()
                 .inputCode("Hello from WebDriver")
                 .setExpiration(Expiration.TEN_MINUTES)

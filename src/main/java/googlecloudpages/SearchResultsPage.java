@@ -1,12 +1,12 @@
 package googlecloudpages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 public class SearchResultsPage extends BasePage {
 
@@ -15,8 +15,8 @@ public class SearchResultsPage extends BasePage {
 
     private final By allResultsLoc = By.xpath("//div[contains(@class, gsc-result)]/a[@class='gs-title']");
 
-    public SearchResultsPage(WebDriver driver) {
-        this.driver = driver;
+    public SearchResultsPage() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -30,6 +30,6 @@ public class SearchResultsPage extends BasePage {
 
     public PricingCalculatorPage clickFirstResult() {
         firstResult.click();
-        return new PricingCalculatorPage(driver);
+        return new PricingCalculatorPage();
     }
 }

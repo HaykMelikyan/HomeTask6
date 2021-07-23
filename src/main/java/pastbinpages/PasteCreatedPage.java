@@ -1,12 +1,12 @@
 package pastbinpages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 public class PasteCreatedPage extends BasePage {
 
@@ -16,8 +16,8 @@ public class PasteCreatedPage extends BasePage {
     @FindBy(css = "div.highlighted-code > div.source")
     private WebElement code;
 
-    public PasteCreatedPage(WebDriver driver) {
-        this.driver = driver;
+    public PasteCreatedPage() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 

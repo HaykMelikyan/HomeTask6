@@ -3,12 +3,12 @@ package googlecloudpages;
 import optionpickers.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 import java.util.List;
 
@@ -45,8 +45,8 @@ public class PricingCalculatorPage extends BasePage {
     @FindBy(xpath = "//button[normalize-space() = 'Add to Estimate']")
     private List<WebElement> buttonAddToEstimate;
 
-    public PricingCalculatorPage(WebDriver driver) {
-        this.driver = driver;
+    public PricingCalculatorPage() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -125,7 +125,7 @@ public class PricingCalculatorPage extends BasePage {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(0));
         javascriptExecutor.executeScript("arguments[0].click();", buttonAddToEstimate.get(1));
-        return new EstimationResultBar(driver);
+        return new EstimationResultBar();
     }
 
     private void setDropdownOption(WebElement dropdown, String xpath) {

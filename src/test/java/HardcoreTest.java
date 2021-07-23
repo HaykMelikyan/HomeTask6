@@ -18,7 +18,7 @@ public class HardcoreTest extends BaseTest {
         Logger logger = LogManager.getRootLogger();
 
         logger.trace("Test started");
-        SearchResultsPage searchResultsPage = new HomePage(getDriver())
+        SearchResultsPage searchResultsPage = new HomePage()
                 .open()
                 .waitUntilPageLoads()
                 .searchText(prop.getProperty("googlecloud.search"));
@@ -42,7 +42,7 @@ public class HardcoreTest extends BaseTest {
                 .clickAddGpuCheckbox()
                 .setNumberOfGpus(NumberOfGpus.FOUR)
                 .setGpuType(GpuType.NVIDIA_TESLA_V100)
-                .setLocalSsd(LocalSsd._24x375GB)
+                .setLocalSsd(LocalSsd.STORAGE_24X375GB)
                 .setDatacenterLocation(DatacenterLocation.FRANKFURT)
                 .setCommitedUsage(CommitedUsage.ONE_YEAR)
                 .clickAddToEstimates()
@@ -63,7 +63,7 @@ public class HardcoreTest extends BaseTest {
         getDriver().switchTo().window(tabs.get(1));
         logger.trace("Switched to the new tab");
 
-        EmailGeneratePage emailGeneratePage = new EmailGeneratePage(getDriver())
+        EmailGeneratePage emailGeneratePage = new EmailGeneratePage()
                 .open()
                 .waintUntilPageLoads()
                 .copyEmail();

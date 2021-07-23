@@ -1,11 +1,11 @@
 package googlecloudpages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.drivers.WebDriverFactory;
 
 import java.util.List;
 
@@ -30,8 +30,8 @@ public class EstimationResultBar extends BasePage {
     @FindBy(css = "button[aria-label = 'Email Estimate']")
     private WebElement buttonEmailEstimate;
 
-    public EstimationResultBar(WebDriver driver) {
-        this.driver = driver;
+    public EstimationResultBar() {
+        driver = WebDriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -75,6 +75,6 @@ public class EstimationResultBar extends BasePage {
 
     public EmailEstimateForm clickEmailEstimate() {
         buttonEmailEstimate.click();
-        return new EmailEstimateForm(driver);
+        return new EmailEstimateForm();
     }
 }
