@@ -22,4 +22,8 @@ public class WebDriverFactory {
         driver.set(driverProvider.createDriver());
         return driver.get();
     }
+
+    public static void removeDriver() {
+        driver.remove();
+    }
 }

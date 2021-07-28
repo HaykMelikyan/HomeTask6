@@ -56,5 +56,4 @@ public class EmailGeneratePage {
         String[] words = monthlyCost.getText().split(" ");
         return words[words.length - 1];
     }
-
 }

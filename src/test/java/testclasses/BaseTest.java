@@ -1,3 +1,5 @@
+package testclasses;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,9 +19,9 @@ public abstract class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
-
         getDriver().quit();
         driver.set(null);
+        WebDriverFactory.removeDriver();
     }
 
     protected WebDriver getDriver() {

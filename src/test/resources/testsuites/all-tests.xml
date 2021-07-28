@@ -2,10 +2,10 @@
 <suite name="all tests">
     <test name="all">
         <classes>
-            <class name="HurtMePlentyTest"/>
-            <class name="HardcoreTest"/>
-            <class name="BringItOnTest"/>
-            <class name="ICanWinTest"/>
+            <class name="testclasses.HurtMePlentyTest"/>
+            <class name="testclasses.HardcoreTest"/>
+            <class name="testclasses.BringItOnTest"/>
+            <class name="testclasses.ICanWinTest"/>
         </classes>
     </test>
 </suite>

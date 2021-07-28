@@ -34,15 +34,18 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public SearchResultsPage searchText(String searchText) {
-        Actions actions = new Actions(driver);
-        actions.click(searchField)
+    public HomePage clickSearchButton() {
+        new Actions(driver).click(searchField)
                 .build()
                 .perform();
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
                         .visibilityOfElementLocated(By.cssSelector("devsite-search[search-active]")));
-        actions.sendKeys(searchField, searchText + Keys.ENTER)
+        return new HomePage();
+    }
+
+    public SearchResultsPage searchText(String searchText) {
+        new Actions(driver).sendKeys(searchField, searchText + Keys.ENTER)
                 .build()
                 .perform();
         return new SearchResultsPage();

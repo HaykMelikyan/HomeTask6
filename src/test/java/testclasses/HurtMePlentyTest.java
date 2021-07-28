@@ -1,3 +1,5 @@
+package testclasses;
+
 import googlecloudpages.EstimationResultBar;
 import googlecloudpages.HomePage;
 import googlecloudpages.PricingCalculatorPage;
@@ -12,6 +14,7 @@ public class HurtMePlentyTest extends BaseTest {
         SearchResultsPage searchResultsPage = new HomePage()
                 .open()
                 .waitUntilPageLoads()
+                .clickSearchButton()
                 .searchText("Google Cloud Platform Pricing Calculator");
 
         PricingCalculatorPage pricingCalculatorPage = searchResultsPage

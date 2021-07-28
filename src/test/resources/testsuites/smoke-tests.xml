@@ -2,7 +2,7 @@
 <suite name="smoke tests">
     <test name="smoke">
         <classes>
-            <class name="HardcoreTest"/>
+            <class name="testclasses.HardcoreTest"/>
         </classes>
     </test>
 </suite>

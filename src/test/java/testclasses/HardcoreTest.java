@@ -1,3 +1,5 @@
+package testclasses;
+
 import googlecloudpages.*;
 import optionpickers.*;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +23,7 @@ public class HardcoreTest extends BaseTest {
         SearchResultsPage searchResultsPage = new HomePage()
                 .open()
                 .waitUntilPageLoads()
+                .clickSearchButton()
                 .searchText(prop.getProperty("googlecloud.search"));
         logger.trace("Performed search for pricing calculator");
 

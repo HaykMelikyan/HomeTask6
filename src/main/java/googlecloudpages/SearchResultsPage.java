@@ -24,7 +24,7 @@ public class SearchResultsPage extends BasePage {
     public SearchResultsPage waitUntilPageLoads() {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
-                        .numberOfElementsToBe(allResultsLoc, 10));
+                        .numberOfElementsToBeMoreThan(allResultsLoc, 1));
         return this;
     }
 
