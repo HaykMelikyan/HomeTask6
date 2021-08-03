@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         glue = "cucumbersteps",
-        features = "src/test/java/cucumberrunner/GoogleCloudCalculatorTest.java"
+        features = "src/test/resources/features"
 )
 public class GoogleCloudCalculatorTest extends AbstractTestNGCucumberTests {
 }

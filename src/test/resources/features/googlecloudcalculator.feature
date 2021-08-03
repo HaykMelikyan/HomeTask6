@@ -1,9 +1,9 @@
 Feature: I want to use google cloud calculator and perform calculation
 
   Background: Browser is open and maximized
+    Given the user opens google cloud website
 
   Scenario Outline: Search for google cloud calculator, fill the form and receive result on generated email
-    Given the user opens google cloud website
     When the user clicks on the search button
     And search for <calculator>
     Then clicks on the first result
