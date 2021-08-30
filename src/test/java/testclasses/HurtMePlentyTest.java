@@ -9,7 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HurtMePlentyTest extends BaseTest {
-    @Test
+//    @Description("In cloud.google.com search for google cloud pricing calculator." +
+//            " Open the first result, fill the form and click on estimation button." +
+//            " Verify the chosen variants in the estimation results bar.")
+    @Test(description = "Google Cloud Pricing Calculator Test")
     public void googleCloudPricingCalculatorTest() {
         SearchResultsPage searchResultsPage = new HomePage()
                 .open()

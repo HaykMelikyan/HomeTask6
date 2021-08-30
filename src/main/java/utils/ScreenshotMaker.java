@@ -1,5 +1,6 @@
 package utils;
 
+import com.epam.reportportal.message.ReportPortalMessage;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.OutputType;
@@ -16,6 +17,7 @@ public class ScreenshotMaker {
     private ScreenshotMaker(){}
 
     public static void saveScreenshot(String testName) {
+        ReportPortalMessage message = null;
         try {
             File screenshot = ((TakesScreenshot) WebDriverFactory
                     .getDriver())
@@ -26,7 +28,8 @@ public class ScreenshotMaker {
                             + testName
                             + getCurrentTimeAsString()
                             + ".png"));
-            LogManager.getRootLogger().info("Screenshot has been taken");
+            message = new ReportPortalMessage(screenshot, "Screenshot has been taken");
+            LogManager.getRootLogger().info(message);
         } catch (IOException e) {
             e.printStackTrace();
         }

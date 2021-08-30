@@ -14,7 +14,7 @@ import utils.PropertyReader;
 import java.util.ArrayList;
 
 public class HardcoreTest extends BaseTest {
-    @Test
+    @Test(description = "Google Cloud Pricing Calculator Test With Email Estimation")
     public void googleCloudPricingCalculatorTest() {
         PropertyReader prop = new PropertyReader();
         Logger logger = LogManager.getRootLogger();

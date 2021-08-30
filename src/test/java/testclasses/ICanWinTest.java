@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pastbinpages.HomePage;
 
 public class ICanWinTest extends BaseTest {
-    @Test
+    @Test(description = "Create New Paste In Pastbin")
     public void createNewPaste() {
         new HomePage().open()
                 .waitUntilPageLoads()

@@ -1,8 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="smoke tests">
+        <listeners>
+            <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+        </listeners>
     <test name="smoke">
         <classes>
-            <class name="testclasses.HardcoreTest"/>
+            <class name="testclasses.HurtMePlentyTest"/>
         </classes>
     </test>
 </suite>

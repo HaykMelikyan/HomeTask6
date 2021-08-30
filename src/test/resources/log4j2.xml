@@ -20,11 +20,15 @@
                 <OnStartupTriggeringPolicy/>
             </Policies>
         </RollingFile>
+        <ReportPortalLog4j2Appender name = "ReportPortalAppender">
+            <PatternLayout pattern = "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
         <Root level="Trace">
             <AppenderRef ref="Console-Log"/>
             <AppenderRef ref="File-Log"/>
+            <AppenderRef ref="ReportPortalAppender"/>
         </Root>
     </Loggers>
 </Configuration>

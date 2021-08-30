@@ -8,7 +8,7 @@ import pastbinpages.HomePage;
 import pastbinpages.PasteCreatedPage;
 
 public class BringItOnTest extends BaseTest {
-    @Test
+    @Test(description = "Create New Paste In Pastbin Test")
     public void createNewPasteTest() {
         String expectedCode = "git config --global user.name  \"New Sheriff in Town\"\n" +
                 "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
