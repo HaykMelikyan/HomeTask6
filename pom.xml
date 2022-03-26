@@ -84,6 +84,15 @@
                             <name>listener</name>
                             <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
                         </property>
+                        <property>
+                            <name>sonar.organization</name>
+                            <value>haykmelikyan</value>
+                            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                        </property>
+                        <property>
+                            <name>sonar.host.url</name>
+                            <value>https://sonarcloud.io</value>
+                        </property>
                     </properties>
                 </configuration>
             </plugin>
